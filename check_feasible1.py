@@ -2,33 +2,43 @@ import numpy as np
 import copy
 import math
 # read input
-input_file = 'input.txt'
+input_file = 'input1.txt'
 f = open(input_file,'r')
 f_name = f.readline()
 f_name = f_name.split()[0]
-N_Technican = int(f.readline())
 ListMoveTech = []
 RoutesDrone = []
 Visited = []
-for i in range(N_Technican):
-    oneLine = f.readline()
-    oneLine = oneLine.split()
+first_line = f.readline()
+second_line = f.readline()
+tech_len = len(first_line)
+tech_string = first_line[2:tech_len - 2]
+tech_list = tech_string.split("],[")
+for tech_route in tech_list:
     route = []
-    for j in oneLine:
-        route.append(int(j))
+    elements = tech_route.split(" ")
+    for element in elements:
+        try:
+            route.append(int(element))
+        except:
+            pass
     ListMoveTech.append(route)
-numberRoutesOfDrone = int(f.readline())
-for i in range(numberRoutesOfDrone):
-    oneLine = f.readline()
-    oneLine = oneLine.split()
+print(ListMoveTech)
+N_Technican = len(ListMoveTech)
+
+drone_len = len(second_line)
+drone_string = second_line[1:drone_len - 1]
+drone_list = drone_string.split("],[")
+for drone_route in drone_list:
     route = []
-    for j in oneLine:
-        route.append(int(j))
+    elements = drone_route.split(" ")
+    for element in elements:
+        try:
+            route.append(int(element))
+        except:
+            pass
     RoutesDrone.append(route)
-oneLine = f.readline()
-oneLine = oneLine.split()
-for i in oneLine:
-    Visited.append(int(i))
+print(RoutesDrone)
 # ListMoveTech = [[0, 14, 11, 12, 42], [0, 37, 45, 47, 34, 26, 13, 27, 33, 17, 18, 29, 24, 8, 20, 22, 36, 28, 30, 9, 19, 10, 43, 15], [0, 50, 21, 4, 41, 16, 48, 40, 25, 49, 1, 23, 32, 31, 39, 5, 7, 46, 35, 44, 38], [0, 6, 3, 2]] 
 # RoutesDrone =[[0, 41], [0, 47], [0, 40], [0, 13], [0, 1], [0, 33], [0, 18], [0, 31], [0, 20], [0, 30], [0, 46], [0, 19]]
 # N_Technican = 5
